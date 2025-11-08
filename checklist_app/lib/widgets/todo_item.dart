@@ -21,7 +21,6 @@ class ToDoItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 20),
       child: ListTile(
         onTap: () {
-          // print('Clicked on Todo Item.');
           onToDoChanged(todo);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -29,32 +28,30 @@ class ToDoItem extends StatelessWidget {
         tileColor: Colors.white,
         leading: Icon(
           todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
-          color: blue,
+          color: green,
         ),
         title: Text(
           todo.todoText!,
           style: TextStyle(
             fontSize: 16,
+            fontWeight: FontWeight.bold,
             color: black,
-            decoration: todo.isDone ? TextDecoration.lineThrough : null,
+            decoration: todo.isDone ? TextDecoration.lineThrough : TextDecoration.none,
           ),
         ),
-        trailing: Container(
-          margin: EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-            color: red,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: IconButton(
-            padding: EdgeInsets.all(5),
-            color: Colors.white,
-            iconSize: 18,
-            icon: Icon(Icons.delete),
-            onPressed: () {
-              // print('Clicked on delete icon');
+        subtitle: Text(
+          style: TextStyle(fontSize: 13, color: blue),
+          todo.priority == 1
+              ? '🔥 High'
+              : todo.priority == 2
+                  ? '⚡ Medium'
+                  : '🌿 Low',
+        ),
+         trailing: IconButton(
+          icon: const Icon(Icons.delete, color: red),
+           onPressed: () {
               onDeleteItem(todo.id);
             },
-          ),
         ),
       ),
     );

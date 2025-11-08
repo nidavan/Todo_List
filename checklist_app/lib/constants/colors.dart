@@ -9,3 +9,4 @@ const Color grey = Color(0xFF717171);
 const Color bGColor = Color(0xFFEEEFF5);
 const Color green = Color(0xFF008000);
 const Color white = Color(0xFFFFFFFF);
+const Color orange = Color(0xFFFF9900);
