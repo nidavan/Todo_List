@@ -21,16 +21,8 @@ Check list app create for assignment:
 ### Run this command to open app on web
 -> flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
 
-### Folder Structure
-![alt text](assets/icons/folder_tructure.png)
+### See Folder Structure and screenshot
+-> cd checklist_app => README.md
 
-### screenshot
-![alt text](assets/images/empty_todo.png)
-![alt text](assets/images/list_todo_task.png)
-![alt text](assets/images/add_todo_tak.png)
-![alt text](assets/images/update_todo_task.png)
-![alt text](assets/images/filter_todo.png)
-![alt text](assets/images/filter_high_priority.png)
-![alt text](assets/images/check_done_todo_task.psng)
-![alt text](assets/images/dashbord.png)
+
 
