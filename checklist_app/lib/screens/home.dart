@@ -12,9 +12,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<ToDo> todosList = [];
+  List<ToDo> todoList = [];
   final List<String> options = ['🔥 High', '⚡ Medium', '🌿 Low'];
-  int selectedPriority = -1;
+
   @override
   void initState() {
     super.initState();
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => Dashboard(todoList: todosList),
+                  builder: (_) => Dashboard(todoList: todoList),
                 ),
               );
             },
@@ -64,29 +64,15 @@ class _HomeState extends State<Home> {
           children: [
             Builder(
               builder: (BuildContext context) {
-                if (todosList.isEmpty) {
+                if (todoList.isEmpty) {
                   return SizedBox.shrink();
                 }
-
-                /// bloc function sort data by priority
-                final todos = List.from(todosList);
-                todos.sort((a, b) {
-                  if (a.priority == selectedPriority &&
-                      b.priority != selectedPriority) {
-                    return -1;
-                  } else if (a.priority != selectedPriority &&
-                      b.priority == selectedPriority) {
-                    return 1;
-                  }
-                  return b.id!.compareTo(a.id!);
-                });
-
                 ///bloc show list data
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: todos.length,
+                    itemCount: todoList.length,
                     itemBuilder: (context, index) {
-                      final itemTodo = todos[index];
+                      final itemTodo = todoList[index];
                       return ToDoItem(
                         todo: itemTodo,
                         onToDoChanged: (todo) {
@@ -98,7 +84,7 @@ class _HomeState extends State<Home> {
                         onDeleteItem: (id) {
                           /// bloc delete item todo
                           setState(() {
-                            todosList.removeWhere((item) => item.id == id);
+                            todoList.removeWhere((item) => item.id == id);
                           });
                         },
                         onUpdateItem: (todo) {
@@ -188,7 +174,7 @@ class _HomeState extends State<Home> {
                   ),
                   onPressed: () {
 
-                    /// bloc no input
+                    /// bloc no text input
                     if (todoController.text.trim().isEmpty) {
                       setStateDialog(() {
                         isTextFieldEmpty = true;
@@ -197,14 +183,14 @@ class _HomeState extends State<Home> {
                     }
                     if (isUpdate) {
                       /// bloc update todo list
-                      final item = todosList.firstWhere(
+                      final item = todoList.firstWhere(
                         (t) => t.id == todo?.id,
                       );
                       item.todoText = todoController.text;
                       item.priority = localPriority;
                     } else {
                        /// bloc add todo list
-                      todosList.insert(
+                      todoList.insert(
                         0,
                         ToDo(
                           id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -228,8 +214,8 @@ class _HomeState extends State<Home> {
   }
 
   /// bloc show filtter dialog
-  void _showFilterTodoDialog(BuildContext context, {int priority = -1}) {
-    int localPriority = priority;
+  void _showFilterTodoDialog(BuildContext context) {
+    int localPriority = -1;
     showDialog(
       context: context,
       builder: (_) {
@@ -275,7 +261,20 @@ class _HomeState extends State<Home> {
                     foregroundColor: white,
                   ),
                   onPressed: () {
-                    setState(() => selectedPriority = localPriority);
+                    if(localPriority < 0) return;
+                    ///bloc sort filter
+                    setState(() {
+                    final List<ToDo> sortFilter = List.from(todoList);
+                      sortFilter.sort((a, b) {
+                        if (a.priority == localPriority && b.priority != localPriority) {
+                          return -1;
+                        } else if (a.priority != localPriority && b.priority == localPriority) {
+                          return 1;
+                        }
+                        return b.id!.compareTo(a.id!);
+                      });
+                      todoList = sortFilter;
+                    });
                     Navigator.pop(context);
                   },
                   child: const Text('Save'),

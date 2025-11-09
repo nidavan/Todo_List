@@ -16,7 +16,7 @@ Check list app create for assignment:
 ## Start project
 -> cd checklist_app
 
--> This project i use to run it on web server because my cumputer can not run latest version of flutter.
+-> This project i use to run it on web server because my cumputer can not run latest version of flutter. So this project using Codespaces for develop app and it run online.
 
 ### Run this command to open app on web
 -> flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
