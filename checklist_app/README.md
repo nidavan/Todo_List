@@ -3,18 +3,32 @@
 A new Flutter project.
 
 ## Getting Started
+Check list app create for assignment:
+o The app should allow users to create, edit, and delete to-do items.
+o The app should let users set priorities and do sortable.
+o The app should also allow users to mark check-list items as completed.
+o The app should also allow users to preview personal dashboard (on graph).
 
-This project is a starting point for a Flutter application.
+## Start project
+-> cd checklist_app
 
-A few resources to get you started if this is your first Flutter project:
+-> This project i use to run it on web server because my cumputer can not run latest version of flutter.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-
-### flutter run
+### flutter run on web
 -flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
+
+
+### Folder Structure
+
+lib/
+ ┣ constants/
+ ┃ ┗ colors.dart
+ ┣ models/
+ ┃ ┗ todo.dart
+ ┣ screens/
+ ┃ ┣ home.dart
+ ┃ ┗ dashboard.dart
+ ┣ widgets/
+ ┃ ┗ todo_item.dart
+ ┗ main.dart
+

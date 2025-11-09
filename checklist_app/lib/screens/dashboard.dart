@@ -1,4 +1,4 @@
-import 'package:checklist_app/model/todo.dart';
+import 'package:checklist_app/models/todo.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';

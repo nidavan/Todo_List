@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:checklist_app/screen/dashboard.dart';
-import '../model/todo.dart';
+import 'package:checklist_app/screens/dashboard.dart';
+import '../models/todo.dart';
 import '../constants/colors.dart';
 import '../widgets/todo_item.dart';
 
