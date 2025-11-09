@@ -28,21 +28,3 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 }
-// import 'package:flutter/material.dart';
-// import 'package:flutter_test/flutter_test.dart';
-// import 'package:checklist_app/main.dart';
-// import 'package:hive_flutter/hive_flutter.dart';
-// import 'package:checklist_app/models/todo_item.dart';
-
-// void main() async {
-//   // Initialize Hive before running tests
-//   TestWidgetsFlutterBinding.ensureInitialized();
-//   await Hive.initFlutter();
-//   Hive.registerAdapter(TodoItemAdapter());
-//   final todoBox = await Hive.openBox<TodoItem>('testTodosBox');
-
-//   testWidgets('App builds without crashing', (WidgetTester tester) async {
-//     await tester.pumpWidget(MyApp(todoBox: todoBox));
-//     expect(find.byType(MaterialApp), findsOneWidget);
-//   });
-// }

@@ -5,31 +5,35 @@ import '../constants/colors.dart';
 
 class ToDoItem extends StatelessWidget {
   final ToDo todo;
-  final onToDoChanged;
-  final onDeleteItem;
-
+  final Function onToDoChanged;
+  final Function onDeleteItem;
+  final Function onUpdateItem;
   const ToDoItem({
-    Key? key,
+    super.key, 
     required this.todo,
     required this.onToDoChanged,
     required this.onDeleteItem,
-  }) : super(key: key);
+     required this.onUpdateItem,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       child: ListTile(
-        onTap: () {
-          onToDoChanged(todo);
-        },
+       onTap: () => onUpdateItem(todo),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         tileColor: Colors.white,
-        leading: Icon(
-          todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
-          color: green,
-        ),
+        leading: InkWell(
+          onTap: () {
+            onToDoChanged(todo);
+          },
+          child: Icon(
+            todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
+            color: green,
+          ),
+        ) ,
         title: Text(
           todo.todoText!,
           style: TextStyle(
@@ -41,9 +45,9 @@ class ToDoItem extends StatelessWidget {
         ),
         subtitle: Text(
           style: TextStyle(fontSize: 13, color: blue),
-          todo.priority == 1
+          todo.priority == 0
               ? '🔥 High'
-              : todo.priority == 2
+              : todo.priority == 1
                   ? '⚡ Medium'
                   : '🌿 Low',
         ),
@@ -51,7 +55,7 @@ class ToDoItem extends StatelessWidget {
           icon: const Icon(Icons.delete, color: red),
            onPressed: () {
               onDeleteItem(todo.id);
-            },
+          },
         ),
       ),
     );
